@@ -1,0 +1,131 @@
+@font-face
+{
+  font-family: 'Aileron';
+  src: url(Aileron-Regular.otf);
+}
+
+@font-face
+{
+  font-family: 'Aileron';
+  src: url(Aileron-Bold.otf);
+  font-weight: bold;
+}
+
+* 
+{
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body 
+{ 
+  font-family: 'Aileron'; 
+  background: #f0f4f8; 
+  margin: 0; 
+  color: #333; 
+  text-rendering: optimizeLegibility;
+}
+
+header h1 
+{
+  margin: 0;
+  padding-bottom: 15px; /* Use padding instead if you need space below the text */
+}
+
+header 
+{ 
+  background: #1a3a5f; 
+  color: white; 
+  padding: 20px 15%; 
+  font-size: 1.3rem;
+}
+
+nav a 
+{ 
+  color: #eee; 
+  margin-right: 15px; 
+  text-decoration: underline; 
+  position: relative;
+  text-decoration: none;
+  padding: bottom;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+nav a::after 
+{
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #eee;
+  transition: width 0.15s ease, left 0.15s ease;
+}
+
+nav a:hover::after 
+{
+  width: 100%;  
+  left: 0; 
+}
+
+.container 
+{ 
+  max-width: 1000px; 
+  margin: 30px auto; 
+}
+
+.card 
+{ 
+  background: white; 
+  border-radius: 6px; 
+  padding: 20px; 
+  margin-bottom: 30px; 
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+}
+
+.card h3 
+{ 
+  margin-top: 0; 
+  border-bottom: 2px solid #eee; 
+  padding-bottom: 10px; 
+}
+
+.item 
+{ 
+  padding: 15px 0; 
+  border-bottom: 1px solid #f0f0f0; 
+}
+
+.item:last-child 
+{ 
+  border: none; 
+}
+
+.date 
+{ 
+  font-size: 0.85rem; 
+  color: #666; 
+  margin-top: 5px;
+}
+
+p
+{
+  font-size: 1.2rem;
+}
+
+footer 
+{
+  text-align: center;
+  padding: 1rem;
+  background: #f0f4f8; 
+  color: #444;
+  font-size: 0.9rem;
+}
+
+footer p 
+{ 
+  margin: 0.6rem 0; 
+  font-size: 0.9rem;
+}
