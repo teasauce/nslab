@@ -13,7 +13,7 @@
 <div class="container">
   <div class="card">
     <p>
-      Hello. Laravel sucks and is unnecessary.
+      Hello. Laravel sucks and is unnecessary. nigga attala
     </p>
   </div>
 </div>

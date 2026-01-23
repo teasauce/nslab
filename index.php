@@ -29,22 +29,7 @@ $issues =
 
 <div class="container">
   <div class="card">
-      <h3>Newly Added Articles</h3>
-      <?php foreach ($newlyAdded as $article): ?>
-          <div class="item">
-              <strong><?= $article['title'] ?></strong>
-              <div class="date"><?= $article['date'] ?></div>
-          </div>
-      <?php endforeach; ?>
-  </div>
-
-  <div class="card">
-      <h3>Newly Released Issues</h3>
-      <?php foreach ($issues as $issue): ?>
-          <div class="item">
-              <strong><?= $issue ?></strong>
-          </div>
-      <?php endforeach; ?>
+      about page goes here + list of professors
   </div>
 </div>
 
