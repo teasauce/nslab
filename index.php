@@ -47,7 +47,7 @@ $issues =
     dedicated subpage where you can then browse their published articles. For e.g.,: </p>
 
     <p>
-    <a href="">Dr. Jumadi M. Parenreng, spdospdsd</a> | insert a picture of him here by the side </p>
+    <a href="dosen/jumadi/jumadi.php">Dr. Jumadi M. Parenreng, S.Pd., M.Pd.</a> | insert a picture of him here by the side </p>
     <p><a href="">Dr. ABCD, ABCD </a> | insert a picture of him here by the side </p>
     
   </div>
