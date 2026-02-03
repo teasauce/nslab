@@ -14,6 +14,18 @@ $publications = [
 ];
 ?>
 
+<?php
+  require_once '../../db.php'; 
+  
+  try {
+      $stmt = $pdo->query("SELECT title, date FROM articles ORDER BY date DESC");
+      $articles = $stmt->fetchAll();
+  } catch (Exception $e) {
+      // If the table doesn't exist yet, we'll use an empty array so the page doesn't crash
+      $articles = [];
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,9 +59,9 @@ $publications = [
   <div class="card">
     <h2>Published Articles</h2>
 
-    <?php if (!empty($publications)) : ?>
+    <?php if (!empty($articles)) : ?>
       <ul>
-        <?php foreach ($publications as $pub) : ?>
+        <?php foreach ($articles as $pub) : ?>
           <li>
             <strong><?= $pub["title"] ?></strong><br>
             <small>Published on <?= $pub["date"] ?></small>
