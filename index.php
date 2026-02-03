@@ -29,11 +29,17 @@
     <h1><b> List of professors </b> </h1>
     <p> Afterwards, you're supposed to include in a professor's name and make it a hyperlink to their 
     dedicated subpage where you can then browse their published articles. For e.g.,: </p>
+    <div class="professor-list">
+      <a href="dosen/jumadi/" class="professor-box">
+        <img src="assets/images/jumadi.jpg" alt="Photo of Dr. Jumadi">
+          <span>Dr. Jumadi M. Parenreng, S.Pd., M.Pd.</span>
+      </a>
 
-    <p>
-    <a href="dosen/jumadi/jumadi.php">Dr. Jumadi M. Parenreng, S.Pd., M.Pd.</a> | insert a picture of him here by the side </p>
-    <p><a href="">Dr. ABCD, ABCD </a> | insert a picture of him here by the side </p>
-    
+      <a href="dosen/abcd/" class="professor-box">
+        <img src="assets/images/default.jpg" alt="Photo of Dr. ABCD">
+        <span>Dr. ABCD, S.Kom., M.Kom.</span>
+      </a>
+    </div>
   </div>
 </div>
 

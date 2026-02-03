@@ -1,7 +1,7 @@
 <?php
 $professor = [
-    "name" => "Dr. Jumadi M. Parenreng, S.Pd., M.Pd.",
-    "photo" => "../../assets/images/jumadi.jpeg",
+    "name" => "ABCD, S.Kom., M.Kom.",
+    "photo" => "../../assets/images/jumadi.jpg",
     "bio" => "Dr. Jumadi M. Parenreng is a lecturer and researcher focusing on education,
               instructional technology, and curriculum development. His work emphasizes
               innovative teaching methods and academic research dissemination."
