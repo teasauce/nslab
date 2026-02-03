@@ -6,12 +6,6 @@ $professor = [
               instructional technology, and curriculum development. His work emphasizes
               innovative teaching methods and academic research dissemination."
 ];
-
-$publications = [
-    ["title" => "Innovative AI Techniques in Education", "date" => "2026-01-09"],
-    ["title" => "Curriculum Design for Digital Learning", "date" => "2026-01-07"],
-    ["title" => "Technology Integration in Classrooms", "date" => "2026-01-06"]
-];
 ?>
 
 <?php
