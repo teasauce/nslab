@@ -1,4 +1,36 @@
+r
+{
 aaa
 a!
+}
+
+k
+{
 apa anjing
 apa ini mau ditambah nah?
+}
+
+r
+{
+we just need extend the functionality and add shit here and there
+
+i will define some current simple small-scaled goals of this: 
+1. make some utility scripts in the meantime to keep our sanity 
+  (e.g., writing a php script [that shall not be ran in the browser but locally via the terminal with php ./migrate.php] 
+  equivalent to php artisan migrate) (75% done AFAIK)
+
+2. glue what we have (at the moment) to the database 
+
+3. literally design the database in the first place, what tables to have, etc., this CONFUSES me, if it's not a bother to you
+  i can't ever expect to make this work in a way especially in regards to ROUTING it, plz help with this
+  
+also fuck that sandy-ass looking cunt. one can immediately see how big his ego buldges
+BTW this file is in .gitignore so it should not be publicly visible
+
+also what is 'browse' even supposed to exactly be, i can't for the life of my figure out why we would need
+it if we already have a list of professors in the home page
+
+also let us commit to english as our lingua franca because we are working with code that is in english
+
+gas beli bir hari senin iyya
+}
