@@ -1,7 +1,6 @@
 <?php
 
 // poor man's artisan
-
 // usage: php artisan.php serve, php artisan.php migrate, WIP
 
 $command = $argv[1] ?? 'help';
@@ -18,41 +17,31 @@ switch ($command)
 
   case 'migrate':
     echo "Running database setup...\n";
-    
-    if (!file_exists('setup.sql')) {
-      echo "Error: setup.sql not found in the root directory.\n";
-      break;
-    }
-
-    if (!file_exists('db.php')) {
-      echo "Error: db.php not found. Please configure your database connection first.\n";
-      break;
-    }
-
     include 'db.php'; 
-
+  
     try {
       $sql = file_get_contents('setup.sql');
-      
-      // We use $pdo from db.php. 
-      // Added exec() check to handle potential empty files or syntax errors.
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $pdo->exec($sql);
+  
+      // We split by semicolon but use a regex to be a bit smarter about it
+      $queries = preg_split('/;(?=(?:[^\'"]*[\'"][^\'"]*[\'"])*[^\'"]*$)/', $sql);
+  
+      foreach ($queries as $query) {
+        $query = trim($query);
+        if (!empty($query)) {
+          $pdo->exec($query);
+        }
+      }
       
-      echo "Success: Database is up to date.\n";
+      echo "Success: Database is up to date and clean.\n";
     } 
-    catch (PDOException $e) {
-      echo "Database Error: " . $e->getMessage() . "\n";
-      echo "Check your credentials in config.php / db.php.\n";
-    }
     catch (Exception $e) {
       echo "Error: " . $e->getMessage() . "\n";
-      echo "Maybe try copying contents from setup.sql then pasting it onto phpmyadmin (via its SQL query section, in db_nslab).\n";
     }
     break;
 
   default:
     echo "Available commands: serve, migrate\n";
-    echo "Made by the brilliant person known as presauced (with gemini doing 99.9% of the work).\n";
+    echo "Made by the brilliant person known as presauced (with Gemini doing 99.9% of the work).\n";
     break;
 }
