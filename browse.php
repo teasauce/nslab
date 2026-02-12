@@ -1,22 +1,10 @@
 <?php
-// ==========================
-// TEMP DATA (replace with DB later)
-// ==========================
-$professors = [
-    [
-        "name" => "Dr. Jumadi M. Parenreng, S.Pd., M.Pd.",
-        "slug" => "jumadi",
-        "photo" => "assets/images/jumadi.jpg",
-        "field" => "Education Technology"
-    ],
-    [
-        "name" => "Dr. ABCD, S.Kom., M.Kom.",
-        "slug" => "abcd",
-        "photo" => "assets/images/default.jpg",
-        "field" => "Computer Science"
-    ]
-];
+require_once 'includes/db.php';
+
+$stmt = $pdo->query("SELECT id, name, slug, photo FROM professors ORDER BY name ASC");
+$professors = $stmt->fetchAll();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +28,7 @@ $professors = [
     <div class="professor-grid">
 
       <?php foreach ($professors as $prof) : ?>
-        <a href="dosen/<?= $prof['slug']; ?>/" class="professor-card">
+        <a href="dosen/index.php?slug=<?= htmlspecialchars($prof['slug']); ?>" class="professor-card">
 
           <img
             src="<?= $prof['photo']; ?>"
