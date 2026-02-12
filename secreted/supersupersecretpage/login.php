@@ -1,61 +1,72 @@
 <?php
 session_start();
-
-// If already logged in, redirect
-if (isset($_SESSION['admin_logged_in'])) {
-    header('Location: admin/dashboard.php');
-    exit;
-}
+require_once 'includes/db.php';
 
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    // TEMP credentials (replace with DB later)
-    if ($username === 'admin' && $password === 'admin123') {
-        $_SESSION['admin_logged_in'] = true;
-        header('Location: admin/dashboard.php');
-        exit;
-    } else {
-        $error = 'Invalid username or password';
+    $stmt = $conn->prepare("SELECT * FROM admins WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($admin = $result->fetch_assoc()) {
+
+        if (password_verify($password, $admin['password'])) {
+            $_SESSION['admin_logged_in'] = true;
+            $_SESSION['admin_id'] = $admin['id'];
+
+            header("Location: admin/dashboard.php");
+            exit;
+        }
     }
+
+    $error = "Invalid username or password.";
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Admin Login | UNM JTIK</title>
-  <link rel="stylesheet" href="../../style.css">
+    <meta charset="UTF-8">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
 
+<?php include '../../header.php'; ?>
+
 <div class="container">
-  <div class="card" style="max-width:400px;margin:60px auto;">
-    <h1>Admin Login</h1>
+    <div class="card" style="max-width: 400px; margin: auto;">
 
-    <?php if ($error): ?>
-      <p style="color:red;"><?= $error ?></p>
-    <?php endif; ?>
+        <h2>Admin Login</h2>
 
-    <form method="POST">
-      <label>
-        Username
-        <input type="text" name="username" required>
-      </label>
+        <?php if ($error): ?>
+            <p style="color: red;"><?= $error ?></p>
+        <?php endif; ?>
 
-      <label>
-        Password
-        <input type="password" name="password" required>
-      </label>
+        <form method="POST" action="">
+            
+            <label>Username</label><br>
+            <input type="text" name="username" required style="width: 100%; padding: 8px; margin-bottom: 15px;">
+            
+            <label>Password</label><br>
+            <input type="password" name="password" required style="width: 100%; padding: 8px; margin-bottom: 20px;">
 
-      <button type="submit">Login</button>
-    </form>
-  </div>
+            <button type="submit" style="width: 100%; padding: 10px;">
+                Login
+            </button>
+
+        </form>
+
+    </div>
 </div>
+
+<?php include '../../footer.php'; ?>
 
 </body>
 </html>
