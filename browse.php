@@ -38,7 +38,6 @@ $professors = $stmt->fetchAll();
 
           <div class="professor-info">
             <h3><?= $prof['name']; ?></h3>
-            <small><?= $prof['field']; ?></small>
           </div>
 
         </a>

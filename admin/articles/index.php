@@ -77,6 +77,9 @@ $articles = $stmt->fetchAll();
         <?php endif; ?>
 
     </div>
+    <br>
+    <a href="../dashboard.php" class="button">
+        &larr; Back to Dashboard
 
 </div>
 

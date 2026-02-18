@@ -103,6 +103,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </button>
 
         </form>
+        <br>
+        <a href="index.php" class="button">
+            &larr; Back to Articles
 
     </div>
 </div>
