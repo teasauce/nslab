@@ -18,51 +18,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($name) {
 
-        $slug = generateSlug($name);
-
-        /* =========================
-           HANDLE FILE UPLOAD
-        ========================= */
+        // Handle File Upload
         if (!empty($_FILES['photo']['name'])) {
 
-            $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+            $uploadDir = __DIR__ . '/../../public/uploads/professors/';
+            $fileTmp = $_FILES['photo']['tmp_name'];
+            $fileName = $_FILES['photo']['name'];
+            $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
-            if (in_array($_FILES['photo']['type'], $allowedTypes)) {
+            // Allowed file types
+            $allowed = ['jpg', 'jpeg', 'png', 'webp'];
 
-                $uploadDir = __DIR__ . '/../../assets/images/';
-                $fileName = uniqid() . '_' . basename($_FILES['photo']['name']);
-                $targetPath = $uploadDir . $fileName;
+            if (in_array($fileExt, $allowed)) {
 
-                if (move_uploaded_file($_FILES['photo']['tmp_name'], $targetPath)) {
-                    $photoPath = 'assets/images/' . $fileName;
-                } else {
-                    $message = "Image upload failed.";
+                // Generate unique file name
+                $newFileName = uniqid('prof_') . '.' . $fileExt;
+                $destination = $uploadDir . $newFileName;
+
+                if (move_uploaded_file($fileTmp, $destination)) {
+                    $photoPath = 'uploads/professors/' . $newFileName;
                 }
-
-            } else {
-                $message = "Invalid image type. Only JPG, PNG, WEBP allowed.";
             }
         }
 
-        /* =========================
-           INSERT INTO DATABASE
-        ========================= */
-        if (!$message) {
+        $slug = generateSlug($name);
 
-            $stmt = $pdo->prepare("
-                INSERT INTO professors (name, slug, bio, photo)
-                VALUES (?, ?, ?, ?)
-            ");
+        $stmt = $pdo->prepare("
+            INSERT INTO professors (name, slug, bio, photo)
+            VALUES (?, ?, ?, ?)
+        ");
 
-            $stmt->execute([
-                $name,
-                $slug,
-                $bio,
-                $photoPath
-            ]);
+        $stmt->execute([$name, $slug, $bio, $photoPath]);
 
-            $message = "Professor added successfully.";
-        }
+        $message = "Professor added successfully.";
 
     } else {
         $message = "Name is required.";
@@ -90,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p><?= htmlspecialchars($message) ?></p>
         <?php endif; ?>
 
+        <!-- IMPORTANT: enctype added -->
         <form method="POST" enctype="multipart/form-data">
 
             <label>Name *</label><br>
@@ -97,9 +86,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                    style="width:100%; padding:8px; margin-bottom:15px;">
 
             <label>Upload Photo</label><br>
-            <input type="file" name="photo"
-                   accept="image/jpeg, image/png, image/webp"
-                   style="margin-bottom:15px;">
+            <input type="file" name="photo" id="photoInput" accept="image/*"
+                   style="margin-bottom:15px;"><br>
+
+            <img id="previewImage"
+                src=""
+                style="display:none; width:150px; margin-bottom:15px; border-radius:8px;">
 
             <label>Bio</label><br>
             <textarea name="bio" rows="6"
@@ -109,13 +101,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         </form>
         <br>
-        <a href="index.php" class="button">
-            &larr; Back to Professors
+        <a href="../dashboard.php" class="button">&larr; Back to Dashboard</a>
 
     </div>
 </div>
 
 <?php include '../../footer.php'; ?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
 
+    const input = document.getElementById('photoInput');
+    const preview = document.getElementById('previewImage');
+
+    input.addEventListener('change', function(event) {
+
+        const file = event.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+
+            reader.readAsDataURL(file);
+        }
+    });
+
+});
+</script>
 </body>
 </html>

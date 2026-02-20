@@ -13,15 +13,29 @@ require_once '../includes/auth.php';
 
 <?php include '../header.php'; ?>
 
-<div class="container">
-  <div class="card">
-    <h1>Admin Dashboard</h1>
+<div class="admin-wrapper">
+  <div class="admin-card">
+    <h1 class="admin-title">Admin Dashboard</h1>
+    <p class="admin-subtitle">Manage your website content</p>
 
-    <ul>
-      <li><a href="professors/index.php">Manage Professors</a></li>
-      <li><a href="articles/index.php">Manage Articles</a></li>
-      <li><a href="logout.php">Logout</a></li>
-    </ul>
+    <div class="admin-grid">
+      
+      <a href="professors/index.php" class="admin-box">
+        <h2>👨‍🏫 Professors</h2>
+        <p>Add, edit, or remove professors</p>
+      </a>
+
+      <a href="articles/index.php" class="admin-box">
+        <h2>📰 Articles</h2>
+        <p>Manage articles and publications</p>
+      </a>
+
+      <a href="logout.php" class="admin-box danger">
+        <h2>🚪 Logout</h2>
+        <p>End admin session</p>
+      </a>
+
+    </div>
   </div>
 </div>
 

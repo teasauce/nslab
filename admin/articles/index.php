@@ -76,11 +76,12 @@ $articles = $stmt->fetchAll();
             <p>No articles found.</p>
         <?php endif; ?>
 
-    </div>
-    <br>
+        <br>
     <a href="../dashboard.php" class="button">
         &larr; Back to Dashboard
+    </a>
 
+    </div>
 </div>
 
 <?php include '../../footer.php'; ?>

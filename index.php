@@ -53,11 +53,10 @@ $professors = $stmt->fetchAll();
             href="dosen/index.php?slug=<?= htmlspecialchars($prof['slug']) ?>" 
             class="professor-box"
           >
-            <img 
-              src="<?= htmlspecialchars($prof['photo']) ?>" 
-              alt="Photo of <?= htmlspecialchars($prof['name']) ?>"
-              onerror="this.src='assets/images/default.jpg';"
-            >
+        <img src="public/<?= htmlspecialchars($prof['photo']); ?>"
+           alt="Photo of <?= htmlspecialchars($prof['name']); ?>"
+            onerror="this.src='assets/images/default.jpg';">
+
             <span><?= htmlspecialchars($prof['name']) ?></span>
           </a>
         <?php endforeach; ?>

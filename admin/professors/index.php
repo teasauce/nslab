@@ -56,6 +56,8 @@ $professors = $stmt->fetchAll();
         <?php else: ?>
             <p>No professors found.</p>
         <?php endif; ?>
+        <br>
+        <a href="../dashboard.php" class="button">&larr; Back to Dashboard</a>
 
     </div>
 </div>

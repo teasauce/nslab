@@ -30,11 +30,9 @@ $professors = $stmt->fetchAll();
       <?php foreach ($professors as $prof) : ?>
         <a href="dosen/index.php?slug=<?= htmlspecialchars($prof['slug']); ?>" class="professor-card">
 
-          <img
-            src="<?= $prof['photo']; ?>"
-            alt="Photo of <?= $prof['name']; ?>"
-            onerror="this.src='assets/images/default.jpg';"
-          >
+          <img src="public/<?= htmlspecialchars($prof['photo']); ?>"
+          alt="Photo of <?= htmlspecialchars($prof['name']); ?>"
+          onerror="this.src='assets/images/default.jpg';">
 
           <div class="professor-info">
             <h3><?= $prof['name']; ?></h3>

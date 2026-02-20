@@ -283,3 +283,76 @@ footer p
 .article-card h3 {
   margin: 0 0 10px 0;
 }
+
+/* ============================= */
+/* ADMIN DASHBOARD STYLES */
+/* ============================= */
+
+.admin-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.admin-card {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 900px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.admin-title {
+  margin: 0;
+  font-size: 32px;
+  text-align: center;
+}
+
+.admin-subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.admin-box {
+  display: block;
+  text-decoration: none;
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+  border: 1px solid #eee;
+  color: #333;
+}
+
+.admin-box h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.admin-box p {
+  margin-bottom: 0;
+  color: #666;
+}
+
+.admin-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  background: #ffffff;
+}
+
+.admin-box.danger {
+  background: #fff3f3;
+  border: 1px solid #ffc9c9;
+}
+
+.admin-box.danger:hover {
+  background: #ffe5e5;
+}
