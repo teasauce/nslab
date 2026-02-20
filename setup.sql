@@ -1,30 +1,148 @@
 -- 1. Blow everything away so we start fresh
 DROP TABLE IF EXISTS articles;
 DROP TABLE IF EXISTS professors;
+DROP TABLE IF EXISTS admins;
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Feb 20, 2026 at 05:36 AM
+-- Server version: 8.0.30
+-- PHP Version: 8.4.10
 
--- 2. Create tables with the 'content' column included
-CREATE TABLE articles (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    date DATE NOT NULL,
-    content TEXT
-);
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-CREATE TABLE professors (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    photo VARCHAR(255),
-    bio TEXT 
-);
+--
+-- Database: `db_nslab`
+--
 
--- 3. Seed data
-INSERT INTO articles (title, date, content) VALUES 
-('Innovative AI Techniques in Education', '2026-01-09', 'Exploring how AI transforms classrooms.'),
-('Advances in Quantum Computing', '2026-01-06', 'A look into the next generation of processing.');
+-- --------------------------------------------------------
 
-INSERT INTO professors (name, photo, bio) VALUES 
-(
-    'Dr. Jumadi M. Parenreng, S.Pd., M.Pd.', 
-    '../../assets/images/jumadi.jpg', 
-    'Dr. Jumadi M. Parenreng is a lecturer and researcher focusing on education, instructional technology, and curriculum development.'
-);
+--
+-- Table structure for table `admins`
+--
+
+CREATE TABLE `admins` (
+  `id` int NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `username`, `password`, `created_at`) VALUES
+(2, 'admin', '$2y$12$IBdf1JjN0FOsnL6sYPIF7.meVqp0Mj6VsGc8nCGxdkUHHOd46NJH.', '2026-02-12 00:31:26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `articles`
+--
+
+CREATE TABLE `articles` (
+  `id` int NOT NULL,
+  `professor_id` int NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `content` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `articles`
+--
+
+INSERT INTO `articles` (`id`, `professor_id`, `title`, `date`, `content`) VALUES
+(3, 1, 'balls', '2026-02-12', 'piss piss in a bottle what should I shit out yesterday'),
+(4, 1, 'personality', '2026-02-12', 'today I want to talk about how personality should be above both ass and boobs'),
+(6, 2, 'ppppppp', '2026-02-20', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `professors`
+--
+
+CREATE TABLE `professors` (
+  `id` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `bio` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `professors`
+--
+
+INSERT INTO `professors` (`id`, `name`, `slug`, `photo`, `bio`) VALUES
+(1, 'Dr. Jumadi M. Parenreng, S.Pd., M.Pd.', 'jumadi', '../../assets/images/jumadi.jpg', 'Dr. Jumadi M. Parenreng is a lecturer and researcher focusing on education, instructional technology, and curriculum development.'),
+(2, 'pwpwpwp', 'pwpwpwp', 'uploads/professors/prof_6997dc5623e39.png', 'he is someone');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indexes for table `articles`
+--
+ALTER TABLE `articles`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_professor` (`professor_id`);
+
+--
+-- Indexes for table `professors`
+--
+ALTER TABLE `professors`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `slug` (`slug`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `articles`
+--
+ALTER TABLE `articles`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `professors`
+--
+ALTER TABLE `professors`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `articles`
+--
+ALTER TABLE `articles`
+  ADD CONSTRAINT `fk_professor` FOREIGN KEY (`professor_id`) REFERENCES `professors` (`id`) ON DELETE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
