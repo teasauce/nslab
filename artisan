@@ -17,7 +17,7 @@ switch ($command)
 
   case 'migrate':
     echo "Running database setup...\n";
-    include 'db.php'; 
+    include 'includes/db.php'; 
   
     try {
       $sql = file_get_contents('setup.sql');

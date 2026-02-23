@@ -19,7 +19,7 @@ if (!$professor) {
 
 // Fetch articles
 $stmt = $pdo->prepare("
-    SELECT id, title, date 
+    SELECT id, title, date, content
     FROM articles 
     WHERE professor_id = ? 
     ORDER BY date DESC
@@ -64,20 +64,34 @@ $articles = $stmt->fetchAll();
         <h2>Published Articles</h2>
 
         <?php if (!empty($articles)): ?>
-            <div class="article-grid">
-                <?php foreach ($articles as $article): ?>
-                    <div class="article-card">
-                        <h3>
-                            <a href="../article.php?id=<?= $article['id'] ?>">
-                                <?= htmlspecialchars($article['title']) ?>
-                            </a>
-                        </h3>
-                        <small>
-                            <?= htmlspecialchars(date("F j, Y", strtotime($article['date']))) ?>
-                        </small>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+          <div class="article-grid">
+              <?php foreach ($articles as $article): ?>
+                  <div class="article-card">
+                      <h3>
+                          <?php if (!empty($article['content'])): ?>
+                              <a href="../uploads/<?= htmlspecialchars($article['content']) ?>" target="_blank">
+                                  <?= htmlspecialchars($article['title']) ?>
+                              </a>
+                          <?php else: ?>
+                              <?= htmlspecialchars($article['title']) ?> (No File)
+                          <?php endif; ?>
+                      </h3>
+                      <small>
+                          <?= htmlspecialchars(date("F j, Y", strtotime($article['date']))) ?>
+                      </small>
+                      
+                      <?php if (!empty($article['content'])): ?>
+                          <div style="margin-top: 5px;">
+                              <a href="../uploads/<?= htmlspecialchars($article['content']) ?>" 
+                                 download 
+                                 style="font-weight: bold; font-size: 0.8em; color: #d32f2f; text-decoration: none;">
+                                 PDF Download ↓
+                              </a>
+                          </div>
+                      <?php endif; ?>
+                  </div>
+              <?php endforeach; ?>
+          </div>        
         <?php else: ?>
             <p>No articles yet.</p>
         <?php endif; ?>
