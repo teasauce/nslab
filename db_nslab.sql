@@ -1,15 +1,16 @@
--- 1. Blow everything away so we start fresh
-DROP TABLE IF EXISTS articles;
-DROP TABLE IF EXISTS professors;
-DROP TABLE IF EXISTS admins;
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Feb 20, 2026 at 05:36 AM
--- Server version: 8.0.30
--- PHP Version: 8.4.10
+-- Host: localhost
+-- Generation Time: Feb 24, 2026 at 04:07 AM
+-- Server version: 9.6.0
+-- PHP Version: 8.5.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -38,7 +39,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `username`, `password`, `created_at`) VALUES
-(2, 'admin', '$2y$12$IBdf1JjN0FOsnL6sYPIF7.meVqp0Mj6VsGc8nCGxdkUHHOd46NJH.', '2026-02-12 00:31:26');
+(2, 'admin', '$2y$12$IBdf1JjN0FOsnL6sYPIF7.meVqp0Mj6VsGc8nCGxdkUHHOd46NJH.', '2026-02-11 16:31:26');
 
 -- --------------------------------------------------------
 
@@ -61,7 +62,9 @@ CREATE TABLE `articles` (
 INSERT INTO `articles` (`id`, `professor_id`, `title`, `date`, `content`) VALUES
 (3, 1, 'balls', '2026-02-12', 'piss piss in a bottle what should I shit out yesterday'),
 (4, 1, 'personality', '2026-02-12', 'today I want to talk about how personality should be above both ass and boobs'),
-(6, 2, 'ppppppp', '2026-02-20', '');
+(6, 2, 'ppppppp', '2026-02-20', ''),
+(7, 1, 'a', '2026-02-20', 'a'),
+(8, 1, 'niggar', '2026-02-20', '1771567118_Kode_Etik_Dosen_UNM.pdf');
 
 -- --------------------------------------------------------
 
@@ -124,7 +127,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `professors`
