@@ -7,7 +7,6 @@ $professors = [];
 $articles = [];
 
 if ($query !== '') {
-
     // Search professors
     $stmt = $pdo->prepare("
         SELECT id, name, slug, photo 
@@ -20,7 +19,7 @@ if ($query !== '') {
 
     // Search articles
     $stmt = $pdo->prepare("
-        SELECT id, title 
+        SELECT id, title, content 
         FROM articles 
         WHERE title LIKE :search
         ORDER BY date DESC
@@ -69,26 +68,28 @@ if ($query !== '') {
 
   </div>
 
-  <!-- Articles -->
   <div class="card">
     <h2>Articles</h2>
-
+  
     <?php if (count($articles) > 0): ?>
       <ul>
         <?php foreach ($articles as $article): ?>
           <li>
-            <a href="article/index.php?id=<?= htmlspecialchars($article['id']); ?>">
-              <?= htmlspecialchars($article['title']); ?>
-            </a>
+            <?php if (!empty($article['content'])): ?>
+              <a href="uploads/<?= htmlspecialchars($article['content']); ?>" target="_blank">
+                <?= htmlspecialchars($article['title']); ?> 📄
+              </a>
+            <?php else: ?>
+              <span style="color: #666;"><?= htmlspecialchars($article['title']); ?> (No PDF)</span>
+            <?php endif; ?>
           </li>
         <?php endforeach; ?>
       </ul>
     <?php else: ?>
       <p>No articles found.</p>
     <?php endif; ?>
-
+  
   </div>
-
 </div>
 
 <?php include 'footer.php'; ?>

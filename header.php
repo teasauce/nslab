@@ -10,7 +10,7 @@
     </div>
 
     <div class="header-right">
-      <form method="GET" action="search.php" class="search-form compact">
+      <form method="GET" action="/search.php" class="search-form compact">
         <input 
           type="text" 
           name="q" 
