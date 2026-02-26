@@ -43,7 +43,7 @@ $articles = $stmt->fetchAll();
 
     <div class="card profile-card">
         <img 
-            src="../<?= htmlspecialchars($professor['photo']) ?>" 
+            src="../public/<?= htmlspecialchars($professor['photo']) ?>" 
             alt="<?= htmlspecialchars($professor['name']) ?>"
             class="profile-photo"
             onerror="this.src='../assets/images/default.jpg';"

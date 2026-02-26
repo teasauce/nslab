@@ -356,3 +356,59 @@ footer p
 .admin-box.danger:hover {
   background: #ffe5e5;
 }
+
+/* ============================= */
+/* HEADER LAYOUT */
+/* ============================= */
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left h1 {
+  margin: 0;
+}
+
+.header-left nav {
+  margin-top: 10px;
+}
+
+/* ============================= */
+/* COMPACT SEARCH */
+/* ============================= */
+
+.search-form.compact {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 30px;
+  padding: 4px 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.search-form.compact input {
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border-radius: 30px;
+  width: 180px;
+}
+
+.search-form.compact button {
+  background: #1a3a5f;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s ease;
+}
+
+.search-form.compact button:hover {
+  background: #244d7a;
+}
