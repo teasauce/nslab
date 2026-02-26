@@ -4,8 +4,8 @@
     <div class="header-left">
       <h1>JTIK Lab Article Platform</h1>
       <nav>
-        <a href="index.php">Home</a>
-        <a href="browse.php">Browse</a>
+        <a href="../index.php">Home</a>
+        <a href="../browse.php">Browse</a>
       </nav>
     </div>
 
