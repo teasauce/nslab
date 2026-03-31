@@ -1,6 +1,6 @@
 <?php
 require_once 'includes/db.php';
-
+// please change the username and password before running this script, and run it only once to avoid duplicate entries in the database
 $username = "admin";
 $password = "admin123";
 
